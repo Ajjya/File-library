@@ -1,2 +1,2 @@
 # File-library
-A simple jQuery library for uploading, cropping, deleting files
+A simple jQuery library for uploading, cropping, deleting files1
