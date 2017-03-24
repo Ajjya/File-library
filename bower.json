@@ -1,0 +1,30 @@
+{
+  "name": "File-library",
+  "description": "A simple jQuery library for work with files. Useful for creating admin part.",
+  "main": "index.js",
+  "authors": [
+    "Vladyslava Prykhodko <vladyslava.prykhodko@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "file-library",
+    "admin",
+    "files",
+    "upload",
+    "html5"
+  ],
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cropper": "^2.3.4",
+    "font-awesome": "fontawesome#^4.7.0",
+    "jquery": "^3.1.1"
+  }
+}

@@ -1,0 +1,16 @@
+{
+	"OK":"OK",
+	"file_library": "File Library",
+	"add_new_file": "Add new file",
+	"use_file": "Use file",
+	"not_crop": "Not crop",
+	"crop": "Crop",
+	"error": "Error",
+	"loaded_saving": "% loaded. Saving...please, wait",
+	"error_of_uploading": "Error of uploading. Please contact your administrator.",
+	"upload_failed": "Upload Failed",
+	"upload_aborted": "Upload Aborted",
+	"error_of_cropping": "Error of cropping. Please contact your administrator.",
+	"error_file_size": "Error of file size",
+	"error_file_type": "Error of file type"
+}

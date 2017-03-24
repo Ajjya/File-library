@@ -1,0 +1,7 @@
+{
+	"type": "Success",
+	"text": "Files was uploaded successfull.",
+	"src": "http://fl.local:8081/images/Chrysanthemum.jpg",
+	"id": 1,
+	"file_type": "image"
+}

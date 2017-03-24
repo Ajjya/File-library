@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>File library page demo</title>
+	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="bower_components/cropper/dist/cropper.min.css">
+	<link rel="stylesheet" href="js/media-library/flui/flui.css">
+	<link rel="stylesheet" href="js/media-library/src/file-library.css">
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/cropper/dist/cropper.min.js"></script>
+	<script src="js/media-library/flui/flui.js"></script>
+	<script src="js/media-library/src/file-library.js"></script>
+	<style type="text/css">
+		.img_wrap{
+			position: relative;
+		}
+
+		.img_wrap img{
+			display: block;
+		}
+
+		.capture{
+			background-color: rgba(255,255,255,0.8);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="dir_wrap"></div>
+		<a href="#" class="upload">Upload image</a>
+		<a href="#" class="library">Library</a>
+	</div>
+	<div class="img_wrap">
+		<img src="http://fl.local:8081/images/Chrysanthemum.jpg" alt />
+		<div class="capture">
+			<a href="#" class="crop" data-file-id="1" data-file-src="http://fl.local:8081/images/Chrysanthemum.jpg">Crop</a>
+			<a href="#" class="remove" data-file-id="1">Remove</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/*create new library object*/
+		var FL = new FileLibrary(
+			{
+				maxUploadSize: 1000000,
+				ln: 'EN'
+			},
+			['upload', 'crop', 'remove', 'library'], 
+			['image/*'],
+			{
+				library: 'http://fl.local:8081/api/library.json',
+				upload: 'http://fl.local:8081/api/upload.json',
+			    crop: 'http://fl.local:8081/api/crop.json',
+				remove: 'http://fl.local:8081/api/remove.json',
+				language: 'http://fl.local:8081/js/media-library/ln/'
+			}
+		);	
+
+		/*activate buttons*/
+		var library_buttons = [];
+		$('.library').each(function(i, item){
+			library_buttons.push({
+				'el': $(this)
+			});
+		});
+
+		var upload_buttons = [];
+		$('.upload').each(function(i, item){
+			upload_buttons.push({
+				'el': $(this),
+				'aspectRatio': 21 / 9
+			});
+		});
+
+		var crop_buttons = [];
+		$('.crop').each(function(i, item){
+			crop_buttons.push({
+				'el': $(this),
+			});
+		});
+
+		var remove_buttons = [];
+		$('.remove').each(function(i, item){
+			remove_buttons.push({
+				'el': $(this),
+			});
+		});
+		
+		FL.init(
+			{
+				library_buttons: library_buttons,
+				upload_buttons: upload_buttons,
+				crop_buttons: crop_buttons,
+				remove_buttons: remove_buttons
+			}
+		);
+
+		/*events*/
+
+		/*libraryActiveImageChanged triggers when active image changed
+			activeFile  = {
+				'id' : "",
+				'src' : "",
+				'thumb':"",
+				'alt': "",
+				'width': "",
+				'height': "",
+			};
+
+			dataFileOptions = {
+				aspectRatio: false,
+				groupID: false 
+			}	
+		*/
+		$( document ).on( "libraryActiveFileChanged", function(event, activeFile, dataFileOptions){
+			console.log(activeFile);
+			console.log(dataFileOptions);
+		});
+
+		/*fileUploaded triggers when file uploaded
+			activeFile  = {
+				'id' : "",
+				'src' : "",
+				'thumb':"",
+				'alt': "",
+				'width': "",
+				'height': "",
+			};
+		*/
+		$( document ).on( "fileUploaded", function(event, uploadedFile){
+			console.log(uploadedFile);
+		});
+
+		/*fileCropped triggers when file cropped
+			activeFile  = {
+				'id' : "",
+				'src' : "",
+				'thumb':"",
+				'alt': "",
+				'width': "",
+				'height': "",
+			};
+		*/
+		$( document ).on( "fileCropped", function(event, croppedFile){
+			console.log(croppedFile);
+		});
+
+		/*fileRemoved triggers when file removed
+			activeFile  = {
+				'id' : "",
+				'src' : "",
+				'thumb':"",
+				'alt': "",
+				'width': "",
+				'height': "",
+			};
+		*/
+		$( document ).on( "fileRemoved", function(event, removedFile){
+			console.log(removedFile);
+		});
+	</script>
+</body>
+</html>

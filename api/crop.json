@@ -1,0 +1,9 @@
+{
+	"type":"Success",
+	"text": "Files was cropped successfull.",
+	"id": 1,
+	"src": "http://fl.local:8081/images/Chrysanthemum.jpg",
+	"thumb": "http://fl.local:8081/images/Chrysanthemum-150x200.jpg",
+	"width": 500,
+	"height": 375
+}

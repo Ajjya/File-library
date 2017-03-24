@@ -1,0 +1,145 @@
+#loading{
+	display: none;
+	position: fixed;
+	right: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 10000;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+.loadWrapp {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	width: 300px;
+	text-align: center;
+	font-size: 14px;
+	margin-left: -150px;
+	color: #f5f5f5;
+}
+.pWrap{
+	display: none;
+	position: fixed;
+	z-index: 100;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.5);
+}
+
+.lib_list{
+	list-style-type: none;
+	margin: 0 -10px;
+	padding: 0;
+	overflow: hidden;
+}
+
+.lib_list li{
+	list-style-type: none;
+	margin: 10px;
+	padding: 0;
+	cursor: pointer;
+	display: inline-block;
+	border: 2px solid transparent;
+	padding: 6px;
+}
+
+.lib_list li.active{
+	padding: 6px;
+    border: 2px solid #e0e0e0;
+}
+
+.croppie-container .cr-image{
+	opacity: 1 !important;
+}
+
+.copy_img{
+	position: relative;
+}
+
+.lib_menu{
+	position: absolute;
+    background-color: rgba(255,255,255,0.8);
+    width: 100%;
+    text-align: center;
+    margin-left: -6px;
+}
+
+#CropModal .docs-buttons{
+	padding-top: 10px;
+}
+
+#CropModal .modal-dialog{
+	min-width: 768px;
+    height: 94%;
+    margin: 3% auto;
+}
+
+#crop_body{
+	overflow: hidden;
+	padding-top: 23px;
+}
+
+#crop_body .row:first-child{
+	width: 200px;
+	float: right;
+}
+
+#crop_body .row:last-child{
+	margin-right: 220px;
+}
+
+#crop_body .btn-group{
+	margin-bottom: 5px;
+}
+
+#crop_body .docs-buttons{
+	padding-top: 0;
+}
+
+#crop_body .btn-primary{
+	min-width: 45px;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.pagination>li {
+    display: inline;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
