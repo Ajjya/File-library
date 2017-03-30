@@ -11,4 +11,8 @@
 * [Browser support](#browser-support)
 * [Support](#support)
 * [License](#license)
-
+## Use
+* [jQuery v1.9.1+](https://jquery.com/)
+* [Font awesome](http://fontawesome.io/)
+* [Cropper](https://github.com/fengyuanchen/cropper/s)
+* [Bootstrap](http://getbootstrap.com/)
