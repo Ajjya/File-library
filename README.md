@@ -2,7 +2,7 @@
 <blockquote>A simple javascript library for uploading, cropping, deleting files.</blockquote>
 <h2><a class="anchor" href="#table-of-contents" aria-hidden="true">Table of contents</a></h2>
 <ul>
-	<li><a href="#used">Use</a></li>
+	<li><a href="#use">Use</a></li>
 	<li><a href="#requirements">Requirements</a></li>
 	<li><a href="#features">Features</a></li>
 	<li><a href="#main">Main</a></li>
