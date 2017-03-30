@@ -20,3 +20,15 @@
 	<li><a href="https://github.com/fengyuanchen/cropper/">Cropper</a></li>
 	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
 </ul>
+<h2><a class="anchor" href="#requirements" aria-hidden="true">Requirements</a></h2>
+<ul>
+	<li><a href="https://jquery.com/">jQuery v1.9.1+</a></li>
+	<li><a href="http://fontawesome.io/">Font awesome</a></li>
+	<li><a href="https://github.com/fengyuanchen/cropper">Cropper</a></li>
+</ul>
+<h2><a class="anchor" href="#features" aria-hidden="true">Features</a></h2>
+<ul>
+	<li>Supports 1 <a href="#methods">Method</a></li>
+	<li>Supports 4 <a href="#events">Events</a></li>
+	<li>Cross-browser support</li>
+</ul>
