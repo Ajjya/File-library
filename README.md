@@ -1,7 +1,7 @@
 # File-library
 > A simple javascript library for uploading, cropping, deleting files.
 ## Table of contents
-* Use
+* [Use](#use)
 * Requirements
 * Features
 * Main
