@@ -1,4 +1,4 @@
-<h1><a href="#file-library">File-library Test version</a></h1>
+<h1><a href="#file-library">File-library (Test version)</a></h1>
 <blockquote>A simple javascript library for uploading, cropping, deleting files.</blockquote>
 <h2><a class="anchor" href="#table-of-contents" aria-hidden="true">Table of contents</a></h2>
 <ul>
@@ -49,3 +49,15 @@ dist/
 	<li><a href="https://github.com/Ajjya/File-library/archive/master.zip">Download the latest release.</a></li>
 	<li>Clone the repository: git clone <a href="#" target="_blank">https://github.com/Ajjya/File-library.git</a></li>
 </ul>
+<h3><a href="#installation">Installation</a></h3>
+<p>Include files:</p>
+<div class="highlight highlight-text-html-basic">
+<pre>
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"><!--Font-awesome is required-->
+<link rel="stylesheet" href="/path/to/cropper.min.css"><!-- Cropper is required -->
+<link rel="stylesheet" href="/path/to/file-library.min.css">
+<script src="/path/to/jquery.js"></script><!-- jQuery is required -->
+<script src="/path/to/cropper.min.js"></script><!-- Cropper is required -->
+<script src="/path/to/file-library.min.js"></script>
+</pre>
+</div>
