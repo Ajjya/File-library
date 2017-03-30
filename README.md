@@ -34,11 +34,11 @@
 </ul>
 <h2><a class="anchor" href="#main" aria-hidden="true">Main</a></h2>
 <pre>
-	<code>
-	dist/
-	├── file-library.css     ( 9 KB)
-	├── file-library.min.css ( 7 KB)
-	├── file-library.js      (47 KB)
-	└── file-library.min.js  (31 KB)
-	</code>
+<code>
+dist/
+    ├── file-library.css     ( 9 KB)
+    ├── file-library.min.css ( 7 KB)
+    ├── file-library.js      (47 KB)
+    └── file-library.min.js  (31 KB)
+</code>
 </pre>
