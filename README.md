@@ -51,11 +51,13 @@ dist/
 </ul>
 <h3><a href="#installation">Installation</a></h3>
 <p>Include files:</p>
-```
+<div class="highlight highlight-text-html-basic">
+<pre>
 <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"><!--Font-awesome is required-->
 <link rel="stylesheet" href="/path/to/cropper.min.css"><!-- Cropper is required -->
 <link rel="stylesheet" href="/path/to/file-library.min.css">
 <script src="/path/to/jquery.js"></script><!-- jQuery is required -->
 <script src="/path/to/cropper.min.js"></script><!-- Cropper is required -->
 <script src="/path/to/file-library.min.js"></script>
-```
+</pre>
+</div>
