@@ -61,3 +61,4 @@ dist/
 <script src="/path/to/file-library.min.js"></script>
 </pre>
 </div>
+![alt tag](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
