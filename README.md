@@ -14,5 +14,17 @@
 ## Use
 * [jQuery v1.9.1+](https://jquery.com/)
 * [Font awesome](http://fontawesome.io/)
-* [Cropper](https://github.com/fengyuanchen/cropper/s)
+* [Cropper](https://github.com/fengyuanchen/cropper/)
 * [Bootstrap](http://getbootstrap.com/)
+## Requirements
+* [jQuery v1.9.1+](https://jquery.com/)
+* [Font awesome](http://fontawesome.io/)
+* [Cropper](https://github.com/fengyuanchen/cropper/)
+## Main
+```
+dist/
+├── file-library.css     ( 9 KB)
+├── file-library.min.css ( 7 KB)
+├── file-library.js      (47 KB)
+└── file-library.min.js  (31 KB)
+```
