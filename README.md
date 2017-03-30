@@ -42,3 +42,10 @@ dist/
     └── file-library.min.js  (31 KB)
 </code>
 </pre>
+<h2><a class="anchor" href="#getting-started" aria-hidden="true">Getting started</a></h2>
+<h3><a href="#quick-start">Quick start</a></h3>
+<p>Four quick start options are available:</p>
+<ul>
+	<li><a href="https://github.com/Ajjya/File-library/archive/master.zip">Download the latest release.</a></li>
+	<li>Clone the repository: git clone <a href="#" target="_blank">https://github.com/Ajjya/File-library.git</a></li>
+</ul>
