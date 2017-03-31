@@ -79,6 +79,7 @@ You can choose needed actions from 'upload', 'crop', 'remove', 'library'.
 For example, 'image/*' or 'audio/x-aac'
 
 #### Links - object of backend links:
+---
 * library 
 
 _Url, gets data from database and return json to show on the File library_
@@ -114,3 +115,4 @@ _Url, gets data from database and return json to show on the File library_
 ```json 
 []
 ```
+---
