@@ -43,3 +43,26 @@ Include files:
 <script src="/path/to/cropper.min.js"></script><!-- Cropper is required -->
 <script src="/path/to/file-library.min.js"></script>
 ```
+### Usage
+#### Activation File Library:
+```js
+var FL = new FileLibrary(
+  {
+	maxUploadSize: 1000000,
+	  ln: 'EN'
+  },
+  ['upload', 'crop', 'remove', 'library'], 
+  ['image/*'],
+  {
+	library: '/api/library.json',
+	upload: '/api/upload.json',
+	crop: '/api/crop.json',
+	remove: '/api/remove.json',
+	language: '/js/media-library/ln/'
+  },
+  {
+	aspectRatio: "4:3",
+	groupID: 5
+  }
+);
+```
