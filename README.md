@@ -69,4 +69,4 @@ var FL = new FileLibrary(
 #### Library settings - object:
 * **maxUploadSize** - maximum upload size
 * **ln** - language of file library
-__You can translate ln/EN.json, create needed language and add it to ln folder.__
+_You can translate ln/EN.json, create needed language and add it to ln folder._
