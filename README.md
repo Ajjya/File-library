@@ -48,7 +48,7 @@ Include files:
 ```js
 var FL = new FileLibrary(
 	{
-	maxUploadSize: 1000000,
+		maxUploadSize: 1000000,
 		ln: 'EN'
 	},
 	['upload', 'crop', 'remove', 'library'], 
