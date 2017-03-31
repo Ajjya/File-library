@@ -80,7 +80,7 @@ For example, 'image/*' or 'audio/x-aac'
 
 #### Links - object of backend links:
 ---
-**_library_**
+**_Library (key='library')_**
 
 _Url, gets data from database and return json to show on the File library_
 
@@ -116,7 +116,7 @@ _Url, gets data from database and return json to show on the File library_
 []
 ```
 ---
-**_Upload_**
+**_Upload (key='upload')_**
 
 _Url for uploading files_
 ##### Params: -
@@ -139,7 +139,7 @@ _Url for uploading files_
 }
 ```
 ---
-**_Crop_**
+**_Crop (key='crop')_**
 
 _Url for cropping images. Backend function saves file to folder, removes old file and replaces changes in the database. Notice, names of old file and new file have to be different._
 ##### Params:
@@ -167,7 +167,7 @@ id - id image from Database
 }
 ```
 ---
-**_Remove_**
+**_Remove (key='remove')_**
 
 _Url for removing files._
 ##### Params:
@@ -189,7 +189,7 @@ id - id file from Database
 }
 ```
 ---
-**_Language_**
+**_Language (key='language')_**
 
 _Url for translations folder._
 ##### Params: -
@@ -212,7 +212,7 @@ $('.library').each(function(i, item){
 ```
 _Where:_
 
-_el - jQuery DOM element_
+_el - jQuery DOM element (required)_
 ##### Upload buttons:
 ```js
 var upload_buttons = [];
@@ -225,9 +225,9 @@ $('.upload').each(function(i, item){
 ```
 _Where:_
 
-_el - jQuery DOM element_
+_el - jQuery DOM element (required)_
 
-_aspectRatio - needed aspect Ratio_
+_aspectRatio - aspect Ratio (optional)_
 ##### Crop buttons:
 ```js
 var crop_buttons = [];
@@ -239,7 +239,7 @@ $('.crop').each(function(i, item){
 ```
 _Where:_
 
-_el - jQuery DOM element_
+_el - jQuery DOM element (required)_
 
 ##### Remove buttons:
 ```js
@@ -252,7 +252,7 @@ $('.remove').each(function(i, item){
 ```
 _Where:_
 
-_el - jQuery DOM element_
+_el - jQuery DOM element (required)_
 ### Activate buttons:
 ```js
 FL.init(
