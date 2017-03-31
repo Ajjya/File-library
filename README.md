@@ -257,10 +257,10 @@ _el - jQuery DOM element_
 ```js
 FL.init(
 	{
-	library_buttons: library_buttons,
-	upload_buttons: upload_buttons,
-	crop_buttons: crop_buttons,
-	remove_buttons: remove_buttons
+		library_buttons: library_buttons,
+		upload_buttons: upload_buttons,
+		crop_buttons: crop_buttons,
+		remove_buttons: remove_buttons
 	}
 );
 ```
