@@ -87,7 +87,7 @@ _Url, gets data from database and return json to show on the File library_
 ##### Params: -
 ##### Returns:
 ###### Success:
-```json 
+```js 
 
 {
 	"img_arr": [
@@ -112,12 +112,29 @@ _Url, gets data from database and return json to show on the File library_
 }
 ```
 ###### Error:
-```json 
+```js 
 []
 ```
 ---
 **_Upload_**
+
 _Url for uploading files_
 ##### Params: -
 ##### Returns:
 ###### Success:
+```js
+{
+	"type": "Success",
+	"text": "Files was uploaded successfull.",
+	"src": "http://test.local/images/Chrysanthemum.jpg",
+	"id": 1,
+	"file_type": "image"
+}
+```
+###### Error:
+```js
+{
+	"type": "Error",
+	"text": "Error of uploading"
+}
+```
