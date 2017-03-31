@@ -192,9 +192,37 @@ id - id file from Database
 **_Language_**
 
 _Url for translations folder._
-##### Params:
--
-##### Returns:
--
+##### Params: -
+##### Returns: -
 ---
 #### Data file options - object:
+*aspectRatio: (string) You can use this parametr if you want to crop files only on specific aspectRatio. You can change this parametr in any time
+*groupID: (any) You can use this parament to pass groupID to your app when any event is occured
+You can use any parametrs here, they will be passed to your app when any event is occured
+#### >Activation File Library
+Using jQuery create arrays of action buttons:
+##### Library buttons:
+```js
+var library_buttons = [];
+$('.library').each(function(i, item){
+	library_buttons.push({
+		'el': $(this)
+	});
+});
+```
+_Where:_
+_el - jQuery DOM element_
+##### Upload buttons:
+```js
+var upload_buttons = [];
+$('.upload').each(function(i, item){
+	upload_buttons.push({
+		'el': $(this),
+		'aspectRatio': 21 / 9
+	});
+});
+```
+_Where:_
+*el - jQuery DOM element
+*aspectRatio - needed aspect Ratio
+##### Crop buttons:
