@@ -46,6 +46,21 @@ Include files:
 ### Usage
 #### Activation File Library
 ```js
+var FL = new FileLibrary(library_settings, actions, types_of_files, links, data_file_options);
+```
+_Where:_
+
+_library_settings - object with library settings (maxUploadSize, ln allowed)_
+
+_actions - array with allowed actions ('upload', 'crop', 'remove', 'library')_
+
+_types_of_files = array with allowed mimes_
+
+_links = object with backend links (library, upload, crop, remove, language)_
+
+_data_file_options = object with file options (aspectRatio and any other parametr)_
+
+```js
 var FL = new FileLibrary(
 	{
 		maxUploadSize: 1000000,
