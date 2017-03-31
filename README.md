@@ -138,3 +138,63 @@ _Url for uploading files_
 	"text": "Error of uploading"
 }
 ```
+---
+**_Crop_**
+
+_Url for cropping images. Backend function saves file to folder, removes old file and replaces changes in the database. Notice, names of old file and new file have to be different._
+##### Params:
+POST:
+dataURL - base64 images
+id - id image from Database
+##### Returns:
+###### Success:
+```js
+{
+	"type":"Success",
+	"text": "Files was cropped successfull.",
+	"id": 1,
+	"src": "http://test.local/images/Chrysanthemum.jpg",
+	"thumb": "http://test.local/images/Chrysanthemum-150x200.jpg",
+	"width": 500,
+	"height": 375
+}
+```
+###### Error:
+```js
+{
+	"type": "Error",
+	"text": "Error of cropping"
+}
+```
+---
+**_Remove_**
+
+_Url for removing files._
+##### Params:
+POST:
+id - id file from Database
+##### Returns:
+###### Success:
+```js
+{
+	"type":"Success",
+	"text": "Files was removed successfull."
+}
+```
+###### Error:
+```js
+{
+	"type": "Error",
+	"text": "Error of removing"
+}
+```
+---
+**_Language_**
+
+_Url for translations folder._
+##### Params:
+-
+##### Returns:
+-
+---
+#### Data file options - object:
