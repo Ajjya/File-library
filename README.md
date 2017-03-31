@@ -268,35 +268,49 @@ FL.init(
 );
 ```
 ## Methods
-### dataFileOptionInit()
-Use parametrs in File Library. You can learn params here: [dataFileOptions](#dataFileOptions). Paramerts will be passed to your app when any [event](#events) is occured.
+### dataFileOptionInit(options)
+In order to change options use [dataFileOptions](#dataFileOptions).
+@params: options - object
+```js
+var options = {
+	aspectRatio: 4/3,
+	/*any other parametr*/
+}
+FL.dataFileOptionInit(options);
+```
+To set aspectRatio for cropping images use this function.
+Other parametrs uses to pass them to your app when any [event](#events) is occured.
 ## Events
 ### libraryActiveFileChanged
 This event fires when file in library is choosen
 ```js
-$( document ).on( "libraryActiveImageChanged", function(event, activeImage){
+$( document ).on( "libraryActiveImageChanged", function(event, activeImage, dataFileOptions){
 	console.log(activeImage);
+	console.log(dataFileOptions);
 });
 ```
 ### fileUploaded
 This event fires when file is uploaded
 ```js
-$( document ).on( "fileUploaded", function(event, uploadedFile){
+$( document ).on( "fileUploaded", function(event, uploadedFile, dataFileOptions){
 	console.log(uploadedFile);
+	console.log(dataFileOptions);
 });
 ```
 ### fileCropped
 This event fires when file is uploaded
 ```js
-$( document ).on( "fileCropped", function(event, croppedImage){
+$( document ).on( "fileCropped", function(event, croppedImage, dataFileOptions){
 	console.log(croppedImage);
+	console.log(dataFileOptions);
 })
 ```
 ### fileRemoved
 This event fires when file is removed
 ```js
-$( document ).on( "fileRemoved", function(event, removedfile){
+$( document ).on( "fileRemoved", function(event, removedfile, dataFileOptions){
 	console.log(removedfile);
+	console.log(dataFileOptions);
 });
 ```
 ## Browser support
