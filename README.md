@@ -75,7 +75,7 @@ _You can translate ln/EN.json, create needed language and add it to ln folder._
 #### Actions - array
 You can choose needed actions from 'upload', 'crop', 'remove', 'library'.
 
-#### Mime type of files
+#### Mime type of files - array
 For example, 'image/*' or 'audio/x-aac'
 
 #### Links - object of backend links:
@@ -199,7 +199,7 @@ _Url for translations folder._
 *aspectRatio: (string) You can use this parametr if you want to crop files only on specific aspectRatio. You can change this parametr in any time
 *groupID: (any) You can use this parament to pass groupID to your app when any event is occured
 You can use any parametrs here, they will be passed to your app when any event is occured
-#### >Activation File Library
+#### Activation File Library
 Using jQuery create arrays of action buttons:
 ##### Library buttons:
 ```js
@@ -211,6 +211,7 @@ $('.library').each(function(i, item){
 });
 ```
 _Where:_
+
 _el - jQuery DOM element_
 ##### Upload buttons:
 ```js
@@ -223,6 +224,43 @@ $('.upload').each(function(i, item){
 });
 ```
 _Where:_
-*el - jQuery DOM element
-*aspectRatio - needed aspect Ratio
+
+_el - jQuery DOM element_
+
+_aspectRatio - needed aspect Ratio_
 ##### Crop buttons:
+```js
+var crop_buttons = [];
+$('.crop').each(function(i, item){
+	crop_buttons.push({
+		'el': $(this),
+	});
+});
+```
+_Where:_
+
+_el - jQuery DOM element_
+
+##### Remove buttons:
+```js
+var remove_buttons = [];
+$('.remove').each(function(i, item){
+	remove_buttons.push({
+		'el': $(this),
+	});
+});
+```
+_Where:_
+
+_el - jQuery DOM element_
+### Activate buttons:
+```js
+FL.init(
+	{
+	library_buttons: library_buttons,
+	upload_buttons: upload_buttons,
+	crop_buttons: crop_buttons,
+	remove_buttons: remove_buttons
+	}
+);
+```
