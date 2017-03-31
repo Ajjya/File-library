@@ -84,9 +84,7 @@ For example, 'image/*' or 'audio/x-aac'
 _Url, gets data from database and return json to show on the File library_
 
 ##### Params: -
-
 ##### Returns:
-
 ###### Success:
 ```html 
 {
