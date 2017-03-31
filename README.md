@@ -28,3 +28,8 @@ dist/
 ├── file-library.js      (47 KB)
 └── file-library.min.js  (31 KB)
 ```
+## Getting started
+### Quick start
+Four quick start options are available:
+* [Download the latest release](https://github.com/Ajjya/File-library/archive/master.zip)
+* Clone the repository: git clone [Download the latest release](https://github.com/Ajjya/File-library.git)
