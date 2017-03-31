@@ -352,6 +352,6 @@ $( document ).on( "fileRemoved", function(event, removedfile, dataFileOptions){
 * Edge (latest)
 * Internet Explorer 9+
 ## Support
-If you found a bug or have a feature suggestion, please submit it in the Issues tracker.
+If you found a bug or have a feature suggestion, please submit it in the [Issues tracker](https://github.com/Ajjya/File-library/issues).
 ## License
 The plugin is available under the [MIT licens](http://opensource.org/licenses/MIT).
