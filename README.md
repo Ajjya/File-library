@@ -66,3 +66,6 @@ var FL = new FileLibrary(
 	}
 );
 ```
+#### Library settings - object:
+* **maxUploadSize** - maximum upload size
+* **ln** - language of file library
