@@ -80,7 +80,7 @@ For example, 'image/*' or 'audio/x-aac'
 
 #### Links - object of backend links:
 ---
-**_library _**
+**_library_**
 
 _Url, gets data from database and return json to show on the File library_
 
