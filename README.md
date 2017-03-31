@@ -44,7 +44,7 @@ Include files:
 <script src="/path/to/file-library.min.js"></script>
 ```
 ### Usage
-#### Activation File Library:
+#### Activation File Library
 ```js
 var FL = new FileLibrary(
 	{
@@ -66,8 +66,20 @@ var FL = new FileLibrary(
 	}
 );
 ```
-#### Library settings - object:
+#### Library settings - object
 * **maxUploadSize** - maximum upload size
 * **ln** - language of file library
 
 _You can translate ln/EN.json, create needed language and add it to ln folder._
+
+#### Actions - array
+You can choose needed actions from 'upload', 'crop', 'remove', 'library'.
+
+#### Mime type of files
+For example, 'image/*' or 'audio/x-aac'
+
+#### Links - object of backend links
+Next links are avaliable:
+| Name        | Description           | Params     | Return
+| ------------|:---------------------:| ----------:|--------
+| library     |Url, gets data from database and return json to show on the File library |         |          |
