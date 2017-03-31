@@ -33,3 +33,13 @@ dist/
 Four quick start options are available:
 * [Download the latest release](https://github.com/Ajjya/File-library/archive/master.zip)
 * Clone the repository: git clone [Download the latest release](https://github.com/Ajjya/File-library.git)
+### Installation
+Include files:
+```html
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"><!--Font-awesome is required-->
+<link rel="stylesheet" href="/path/to/cropper.min.css"><!-- Cropper is required -->
+<link rel="stylesheet" href="/path/to/file-library.min.css">
+<script src="/path/to/jquery.js"></script><!-- jQuery is required -->
+<script src="/path/to/cropper.min.js"></script><!-- Cropper is required -->
+<script src="/path/to/file-library.min.js"></script>
+```
