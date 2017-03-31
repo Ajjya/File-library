@@ -86,7 +86,8 @@ _Url, gets data from database and return json to show on the File library_
 ##### Params: -
 ##### Returns:
 ###### Success:
-```html 
+```json 
+
 {
 	"img_arr": [
 		{
@@ -108,4 +109,8 @@ _Url, gets data from database and return json to show on the File library_
 	],
 	"pagination": pagination html
 }
+```
+###### Error:
+```json 
+[]
 ```
