@@ -345,6 +345,7 @@ $( document ).on( "fileRemoved", function(event, removedfile, dataFileOptions){
 </div>
 ```
 ![html](images/123.png)
+
 2. Activate file library
 ```js
 /*create new library object*/
@@ -405,6 +406,10 @@ FL.init(
 );
 ```
 Library window
+
+You can crop, remove, upload files.
+"Use file" button triggers libraryActiveFileChanged event. 
+
 ![library](images/124.png)
 ## Browser support
 * Chrome (latest)
