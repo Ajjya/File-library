@@ -116,3 +116,8 @@ _Url, gets data from database and return json to show on the File library_
 []
 ```
 ---
+**_Upload_**
+_Url for uploading files_
+##### Params: -
+##### Returns:
+###### Success:
