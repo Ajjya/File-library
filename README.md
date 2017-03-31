@@ -144,7 +144,9 @@ _Url for uploading files_
 _Url for cropping images. Backend function saves file to folder, removes old file and replaces changes in the database. Notice, names of old file and new file have to be different._
 ##### Params:
 POST:
+
 dataURL - base64 images
+
 id - id image from Database
 ##### Returns:
 ###### Success:
@@ -172,6 +174,7 @@ id - id image from Database
 _Url for removing files._
 ##### Params:
 POST:
+
 id - id file from Database
 ##### Returns:
 ###### Success:
