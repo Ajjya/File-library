@@ -345,6 +345,67 @@ $( document ).on( "fileRemoved", function(event, removedfile, dataFileOptions){
 </div>
 ```
 ![html](images/123.png)
+2. Activate file library
+```js
+/*create new library object*/
+var FL = new FileLibrary(
+	{
+		maxUploadSize: 1000000,
+		ln: 'EN'
+	},
+	['upload', 'crop', 'remove', 'library'], 
+	['image/*'],
+	{
+		library: 'http://test.local/api/library.json',
+		upload: 'http://test.local/api/upload.json',
+	    	crop: 'http://test.local/api/crop.json',
+		remove: 'http://test.local/api/remove.json',
+		language: 'http://test.local/js/media-library/ln/'
+	}
+);
+```
+3. Init buttons
+```js
+var library_buttons = [];
+$('.library').each(function(i, item){
+	library_buttons.push({
+		'el': $(this)
+	});
+});
+
+var upload_buttons = [];
+$('.upload').each(function(i, item){
+	upload_buttons.push({
+		'el': $(this),
+		'aspectRatio': 21 / 9
+	});
+});
+
+var crop_buttons = [];
+$('.crop').each(function(i, item){
+	crop_buttons.push({
+		'el': $(this),
+	});
+});
+
+var remove_buttons = [];
+$('.remove').each(function(i, item){
+	remove_buttons.push({
+		'el': $(this),
+	});
+});
+
+FL.init(
+	{
+		library_buttons: library_buttons,
+		upload_buttons: upload_buttons,
+		crop_buttons: crop_buttons,
+		remove_buttons: remove_buttons
+	}
+);
+```
+Library window
+![library](images/124.png)
 ## Browser support
 * Chrome (latest)
 * Firefox (latest)
