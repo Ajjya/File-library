@@ -54,11 +54,11 @@ _library_settings - object with library settings (maxUploadSize, ln allowed)_
 
 _actions - array with allowed actions ('upload', 'crop', 'remove', 'library')_
 
-_types_of_files = array with allowed mimes_
+_types_of_files - array with allowed mimes_
 
-_links = object with backend links (library, upload, crop, remove, language)_
+_links - object with backend links (library, upload, crop, remove, language)_
 
-_data_file_options = object with file options (aspectRatio and any other parametr)_
+_data_file_options - object with file options (aspectRatio and any other parametr)_
 
 ```js
 var FL = new FileLibrary(
