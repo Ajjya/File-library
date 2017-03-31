@@ -405,7 +405,7 @@ FL.init(
 	}
 );
 ```
-Library window
+4. Library window
 
 You can crop, remove, upload files.
 "Use file" button triggers libraryActiveFileChanged event. 
