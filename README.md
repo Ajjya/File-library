@@ -78,10 +78,13 @@ You can choose needed actions from 'upload', 'crop', 'remove', 'library'.
 #### Mime type of files
 For example, 'image/*' or 'audio/x-aac'
 
-#### Links - object of backend links
-Name | Description | Params | Return 
---- | --- | --- | --- 
-library | Url, gets data from database and return json to show on the File library | - | ##### Success: ```html 
+#### Links - object of backend links:
+* library 
+_Url, gets data from database and return json to show on the File library_
+**Params:** -
+**Returns:**
+##### Success:
+```html 
 {
 	"img_arr": [
 		{
