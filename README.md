@@ -80,6 +80,7 @@ For example, 'image/*' or 'audio/x-aac'
 
 #### Links - object of backend links
 Next links are avaliable:
-| Name        | Description           | Params     | Return
-| ------------|-----------------------| -----------|--------
+Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
+--- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
+Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
 
