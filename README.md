@@ -344,7 +344,7 @@ $( document ).on( "fileRemoved", function(event, removedfile, dataFileOptions){
 	</div>
 </div>
 ```
-![html][images/123.png]
+![html][https://github.com/Ajjya/File-library/images/123.png]
 ## Browser support
 * Chrome (latest)
 * Firefox (latest)
