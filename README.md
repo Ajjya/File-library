@@ -1,4 +1,4 @@
-# File-library
+# File-library (Test version)
 > A simple javascript library for uploading, cropping, deleting files.
 ## Table of contents
 * [Use](#use)
@@ -8,6 +8,7 @@
 * [Getting started](#getting-started)
 * [Methods](#methods)
 * [Events](#events)
+* [Visual example](#visual_example)
 * [Browser support](#browser-support)
 * [Support](#support)
 * [License](#license)
@@ -327,6 +328,21 @@ $( document ).on( "fileRemoved", function(event, removedfile, dataFileOptions){
 	console.log(removedfile);
 	console.log(dataFileOptions);
 });
+```
+## Visual example
+1. Create your library page
+```html
+<div class="dir_wrap">
+	<a href="#" class="upload">Upload image</a>
+	<a href="#" class="library">Library</a>
+</div>
+<div class="img_wrap">
+	<img src="http://fl.local:8081/images/Chrysanthemum.jpg" alt />
+	<div class="capture">
+		<a href="#" class="crop" data-file-id="1" data-file-src="http://fl.local:8081/images/Chrysanthemum.jpg">Crop</a>
+		<a href="#" class="remove" data-file-id="1">Remove</a>
+	</div>
+</div>
 ```
 ## Browser support
 * Chrome (latest)
