@@ -196,8 +196,8 @@ _Url for translations folder._
 ##### Returns: -
 ---
 #### Data file options - object:
-*aspectRatio: (string) You can use this parametr if you want to crop files only on specific aspectRatio. You can change this parametr in any time
-*groupID: (any) You can use this parament to pass groupID to your app when any event is occured
+* aspectRatio: (string) You can use this parametr if you want to crop files only on specific aspectRatio. You can change this parametr in any time
+* groupID: (any) You can use this parament to pass groupID to your app when any event is occured
 You can use any parametrs here, they will be passed to your app when any event is occured
 #### Activation File Library
 Using jQuery create arrays of action buttons:
@@ -264,3 +264,46 @@ FL.init(
 	}
 );
 ```
+## Methods
+### dataFileOptionInit()
+Use parametrs in File Library. You can learn params here: [dataFileOptions](#dataFileOptions). Paramerts will be passed to your app when any [event](#events) is occured.
+## Events
+### libraryActiveFileChanged
+This event fires when file in library is choosen
+```js
+$( document ).on( "libraryActiveImageChanged", function(event, activeImage){
+	console.log(activeImage);
+});
+```
+### fileUploaded
+This event fires when file is uploaded
+```js
+$( document ).on( "fileUploaded", function(event, uploadedFile){
+	console.log(uploadedFile);
+});
+```
+### fileCropped
+This event fires when file is uploaded
+```js
+$( document ).on( "fileCropped", function(event, croppedImage){
+	console.log(croppedImage);
+})
+```
+### fileRemoved
+This event fires when file is removed
+```js
+$( document ).on( "fileRemoved", function(event, removedfile){
+	console.log(removedfile);
+});
+```
+## Browser support
+* Chrome (latest)
+* Firefox (latest)
+* Safari (latest)
+* Opera (latest)
+* Edge (latest)
+* Internet Explorer 9+
+## Support
+If you found a bug or have a feature suggestion, please submit it in the Issues tracker.
+## License
+The plugin is available under the [MIT licens](http://opensource.org/licenses/MIT).
