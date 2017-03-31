@@ -79,8 +79,28 @@ You can choose needed actions from 'upload', 'crop', 'remove', 'library'.
 For example, 'image/*' or 'audio/x-aac'
 
 #### Links - object of backend links
-Next links are avaliable:
-Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
---- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
-Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
-
+Name | Description | Params | Return 
+--- | --- | --- | --- 
+library | Url, gets data from database and return json to show on the File library | - | ##### Success: ```html 
+{
+	"img_arr": [
+		{
+			"ID":1,
+			"src": "http://test.local/images/Chrysanthemum.jpg",
+			"thumb": "http://test.local/images/Chrysanthemum-150x200.jpg",
+			"alt": "Chrysanthemum",
+			"width": 500,
+			"height": 375
+		},
+		{
+			"ID":2,
+			"src": "http://test.local/images/Remax Bay Street logo.jpg",
+			"thumb": "http://test.local/images/Remax Bay Street logo-150x200.jpg",
+			"alt": "Remax Bay Street",
+			"width": 500,
+			"height": 221
+		}
+	],
+	"pagination": pagination html
+}
+```
