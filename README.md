@@ -81,5 +81,5 @@ For example, 'image/*' or 'audio/x-aac'
 #### Links - object of backend links
 Next links are avaliable:
 | Name        | Description           | Params     | Return
-| ------------|:---------------------:| ----------:|--------
-| library     |Url, gets data from database and return json to show on the File library |         |          |
+| ------------|-----------------------| -----------|--------
+
