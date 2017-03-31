@@ -47,22 +47,22 @@ Include files:
 #### Activation File Library:
 ```js
 var FL = new FileLibrary(
-  {
+	{
 	maxUploadSize: 1000000,
-	  ln: 'EN'
-  },
-  ['upload', 'crop', 'remove', 'library'], 
-  ['image/*'],
-  {
-	library: '/api/library.json',
-	upload: '/api/upload.json',
-	crop: '/api/crop.json',
-	remove: '/api/remove.json',
-	language: '/js/media-library/ln/'
-  },
-  {
-	aspectRatio: "4:3",
-	groupID: 5
-  }
+		ln: 'EN'
+	},
+	['upload', 'crop', 'remove', 'library'], 
+	['image/*'],
+	{
+		library: '/api/library.json',
+		upload: '/api/upload.json',
+		crop: '/api/crop.json',
+		remove: '/api/remove.json',
+		language: '/js/media-library/ln/'
+	},
+	{
+		aspectRatio: "4:3",
+		groupID: 5
+	}
 );
 ```
