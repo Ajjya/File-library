@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<h1><a href="#file-library">File-library</a></h1>
-<blockquote>A simple jQuery library for uploading, cropping, deleting files.2</blockquote>
-=======
 # File-library (Test version)
 > A simple javascript library for uploading, cropping, deleting files.
 ## Table of contents
@@ -426,4 +422,4 @@ You can crop, remove, upload files.
 If you found a bug or have a feature suggestion, please submit it in the [Issues tracker](https://github.com/Ajjya/File-library/issues).
 ## License
 The plugin is available under the [MIT licens](http://opensource.org/licenses/MIT).
->>>>>>> a33c6d83ccd7b993860f890305b7136ca3543180
+
