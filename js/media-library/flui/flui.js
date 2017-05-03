@@ -301,7 +301,7 @@
       $.support.transition && this.$tip.hasClass('fade') ?
         $tip
           .one('bsTransitionEnd', complete)
-          .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
+          .emulateTransitionEnd(FLtooltip.TRANSITION_DURATION) :
         complete()
     }
   }
@@ -394,7 +394,7 @@
     $.support.transition && $tip.hasClass('fade') ?
       $tip
         .one('bsTransitionEnd', complete)
-        .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
+        .emulateTransitionEnd(FLtooltip.TRANSITION_DURATION) :
       complete()
 
     this.hoverState = null

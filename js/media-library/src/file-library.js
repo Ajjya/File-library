@@ -7,8 +7,12 @@
  * ======================================================================== */
 /**
 * 
-* @param actions - array, filetype - array, links - object
+* @param options - object, actions - array, filetype - array, links - object
 * var fl = new FileLibrary(
+*	{
+*		maxUploadSize: 1000000,
+*		ln: 'EN'
+*	},
 *	['upload', 'crop', 'remove', 'library'], 
 *	['image/*'],
 *	{
@@ -426,7 +430,6 @@
 				}
 
 			});
-
 			$('#saveCroppedToFile').on('click', self.saveCroppedImageToFile.bind(self));
 			$('#refuseCrop').on('click', function(){
 				if(self.status.library == "opened"){
@@ -523,7 +526,7 @@
 
 			$('#error_body').empty();
 			$('#error_body').append(str);
-			$('#ErrorModal').show();
+			$('#ErrorModal').flmodal('show');
 		}
 	}
 
@@ -560,12 +563,7 @@
 
 	/*this function for activation dataFileOptions not only after init*/
 	FileLibrary.prototype.dataFileOptionInit = function(options){
-		if(options.aspectRatio){
-			this.dataFileOptions.aspectRatio = options.aspectRatio;
-		}
-		if(options.groupID){
-			this.dataFileOptions.groupID = options.groupID;
-		}
+		this.dataFileOptions = options;
 		// /*open library after init*/
 		// this.library();
 	}
@@ -731,8 +729,9 @@
 		var percent = (event.loaded / event.total) * 100;
 		if(document.getElementById("progressBar")){
 			document.getElementById("progressBar").value = Math.round(percent);
-			document.getElementById("status").innerHTML = Math.round(percent)+ self.translation.use_file;
+			document.getElementById("status").innerHTML = Math.round(percent) + '%';
 		}
+
 	}
 
 	FileLibrary.prototype.__completeHandler = function(event, self, options){
@@ -806,12 +805,13 @@
 		var dataURL = result.toDataURL('image/jpeg');
 
     	var formData = new FormData();
+
 		formData.append("dataURL", JSON.stringify(dataURL));
 		formData.append("id", $('img#imgAreaSelect').attr('data-file-id'));
 
         var ajax = new XMLHttpRequest();
 		
-		ajax.upload.addEventListener("progress", self.__progressHandler, false);
+		ajax.upload.addEventListener("progress", function(event){self.__progressHandler(event, self)}, false);
 		ajax.addEventListener("load", function(event){self.__completeCropHandler(event, self)}, false);
 		ajax.addEventListener("error", self.__errorHandler, false);
 		ajax.addEventListener("abort", self.__abortHandler, false);
@@ -819,7 +819,9 @@
 		ajax.send(formData);
 	};
 
+
 	FileLibrary.prototype.__completeCropHandler = function(event, self){
+		debugger;
 		var response = JSON.parse(event.target.responseText);
 
 		if(response.type == 'Success'){
@@ -862,7 +864,7 @@
 			url: self.links.remove,
 			dataType : "json",
 			type: "POST",
-			data: {file_id: self.activeFile.remove.id},
+			data: {id: self.activeFile.remove.id},
 			success: function(data){
 				if(data.type == 'Success'){
 					$( document ).trigger( "fileRemoved", [ self.activeFile.remove ] );
