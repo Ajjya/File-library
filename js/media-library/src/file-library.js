@@ -16,26 +16,20 @@
 *	['upload', 'crop', 'remove', 'library'], 
 *	['image/*'],
 *	{
-*		library: '/api/library.json',
-*		upload: '/api/upload.json',
-*		crop: '/api/crop.json',
-*		remove: '/api/remove.json',
-*		language: '/js/media-library/ln/'
-*	},
-*	{
-*		aspectRatio: "4:3",
-*		groupID: 5
+*		library: 'http://site.ru/library',
+*		upload: 'http://site.ru/upload',
+*       crop: 'http://site.ru/crop',
+*       remove: 'http://site.ru/remove'
 *	}
 *);
 *
 * @param buttons - array of action buttons,  
-* var library_buttons = [];
 * fl.init(
 *	{
-*		library_buttons: [{el:$('#but1')}, {el:$('#but2')}],
-*		upload_buttons: [{el:$('#but1')}, {el:$('#but2')}],
-*		crop_buttons: [{el:$('#but1')}, {el:$('#but2')}],
-*		remove_buttons: [{el:$('#but1')}, {el:$('#but2')}]
+*		library_buttons: [$('#but1'), $('#but2')],
+*		upload_buttons: [$('#but1'), $('#but2')],
+*		crop_buttons: [$('#but1'), $('#but2')],
+*		remove_buttons: [$('#but1'), $('#but2')]
 *	}
 * );
 *
@@ -343,8 +337,99 @@
 				</div>\
 			</div>");
 			
-			self.buildCropper();
+			/*crop options*/
+			$options = {
+				modal: true,
+				// minContainerHeight: 344
+			}
 
+			$cropImage = $("#imgAreaSelect");
+			$cropImage.cropper($options);
+
+			$('[data-toggle="tooltip"]').fltooltip();
+
+			if (typeof document.createElement('cropper').style.transition === 'undefined') {
+				$('button[data-method="rotate"]').prop('disabled', true);
+				$('button[data-method="scale"]').prop('disabled', true);
+			}
+
+			$('.docs-buttons').on('click', '[data-method]', function () {
+				var $this = $(this);
+				var data = $this.data();
+				var $target;
+				var result;
+
+				if ($this.prop('disabled') || $this.hasClass('disabled')) {
+					return;
+				}
+
+				if ($cropImage.data('cropper') && data.method) {
+
+					data = $.extend({}, data); // Clone a new one
+
+					if (typeof data.target !== 'undefined') {
+						$target = $(data.target);
+
+						if (typeof data.option === 'undefined') {
+							try {
+								data.option = JSON.parse($target.val());
+							} catch (e) {
+								console.log(e.message);
+							}
+						}
+					}
+
+					result = $cropImage.cropper(data.method, data.option, data.secondOption);
+					
+
+					switch (data.method) {
+						case 'scaleX':
+						case 'scaleY':
+							$(this).data('option', -data.option);
+							break;
+					}
+
+					if ($.isPlainObject(result) && $target) {
+						try {
+							$target.val(JSON.stringify(result));
+						} catch (e) {
+							console.log(e.message);
+						}
+					}
+
+				}
+			});
+
+			// Keyboard
+			$(document.body).on('keydown', function (e) {
+
+				if (!$cropImage.data('cropper') || this.scrollTop > 300) {
+					return;
+				}
+
+				switch (e.which) {
+				case 37:
+					e.preventDefault();
+					$cropImage.cropper('move', -1, 0);
+					break;
+
+				case 38:
+					e.preventDefault();
+					$cropImage.cropper('move', 0, -1);
+					break;
+
+				case 39:
+					e.preventDefault();
+					$cropImage.cropper('move', 1, 0);
+					break;
+
+				case 40:
+					e.preventDefault();
+					$cropImage.cropper('move', 0, 1);
+					break;
+				}
+
+			});
 			$('#saveCroppedToFile').on('click', self.saveCroppedImageToFile.bind(self));
 			$('#refuseCrop').on('click', function(){
 				if(self.status.library == "opened"){
@@ -370,112 +455,6 @@
 
 		/*activate modals*/
 		$('.modal').flmodal();
-	}
-
-	FileLibrary.prototype.destroyCropper = function(){
-		$cropImage = $("#imgAreaSelect");
-		$cropImage.cropper('destroy');
-	}
-
-	FileLibrary.prototype.rebuildCropper = function(){
-		this.destroyCropper();
-		this.buildCropper();
-	}
-
-	FileLibrary.prototype.buildCropper = function(){
-		/*crop options*/
-		$options = {
-			modal: true,
-			// minContainerHeight: 344
-		}
-
-		$cropImage = $("#imgAreaSelect");
-		$cropImage.cropper($options);
-
-		$('[data-toggle="tooltip"]').fltooltip();
-
-		if (typeof document.createElement('cropper').style.transition === 'undefined') {
-			$('button[data-method="rotate"]').prop('disabled', true);
-			$('button[data-method="scale"]').prop('disabled', true);
-		}
-
-		$('.docs-buttons').on('click', '[data-method]', function () {
-			var $this = $(this);
-			var data = $this.data();
-			var $target;
-			var result;
-
-			if ($this.prop('disabled') || $this.hasClass('disabled')) {
-				return;
-			}
-
-			if ($cropImage.data('cropper') && data.method) {
-
-				data = $.extend({}, data); // Clone a new one
-
-				if (typeof data.target !== 'undefined') {
-					$target = $(data.target);
-
-					if (typeof data.option === 'undefined') {
-						try {
-							data.option = JSON.parse($target.val());
-						} catch (e) {
-							console.log(e.message);
-						}
-					}
-				}
-
-				result = $cropImage.cropper(data.method, data.option, data.secondOption);
-				
-
-				switch (data.method) {
-					case 'scaleX':
-					case 'scaleY':
-						$(this).data('option', -data.option);
-						break;
-				}
-
-				if ($.isPlainObject(result) && $target) {
-					try {
-						$target.val(JSON.stringify(result));
-					} catch (e) {
-						console.log(e.message);
-					}
-				}
-
-			}
-		});
-
-		// Keyboard
-		$(document.body).on('keydown', function (e) {
-
-			if (!$cropImage.data('cropper') || this.scrollTop > 300) {
-				return;
-			}
-
-			switch (e.which) {
-			case 37:
-				e.preventDefault();
-				$cropImage.cropper('move', -1, 0);
-				break;
-
-			case 38:
-				e.preventDefault();
-				$cropImage.cropper('move', 0, -1);
-				break;
-
-			case 39:
-				e.preventDefault();
-				$cropImage.cropper('move', 1, 0);
-				break;
-
-			case 40:
-				e.preventDefault();
-				$cropImage.cropper('move', 0, 1);
-				break;
-			}
-
-		});
 	}
 
 	FileLibrary.prototype.init = function(buttons){
@@ -672,7 +651,7 @@
 				self.openLibrary();
 			}, 
 			error: function(){
-				self.showError(['Error of getting library ' + self.links.library]);
+				console.log('Error of getting library ' + self.links.library);
 			}               
 		});
 
@@ -774,7 +753,7 @@
 
 			$( document ).trigger( "fileUploaded", [ self.activeFile.upload ] );
 
-			if(self.actions.indexOf('crop') !== -1 && response.mime.indexOf('image') !== -1){
+			if(self.actions.indexOf('crop') !== -1 && response.file_type.indexOf('image') !== -1){
 				self.activeFile.crop = self.activeFile.upload;
 				self.cropImage(options);
 			} else {
@@ -805,22 +784,17 @@
 	FileLibrary.prototype.cropImage = function(options){
 		var self = this;
 
+		$('#loading').hide();
+		$('#CropModal').flmodal('show');
+
 		if(options != undefined && options.aspectRatio){
 			$("#imgAreaSelect").cropper("setAspectRatio", options.aspectRatio);
 		} else if (self.dataFileOptions.aspectRatio){
 			$("#imgAreaSelect").cropper("setAspectRatio", self.dataFileOptions.aspectRatio);
 		}
 
-		var newImg = new Image();
-		newImg.src = self.activeFile.crop.src;
-		newImg.onload = function(){
-			$("#imgAreaSelect").cropper("replace", self.activeFile.crop.src);
-			$('img#imgAreaSelect').attr('data-file-id', self.activeFile.crop.id);
-
-			$('#loading').hide();
-			$('#CropModal').flmodal('show');
-		}
-
+		$("#imgAreaSelect").cropper("replace", self.activeFile.crop.src);
+		$('img#imgAreaSelect').attr('data-file-id', self.activeFile.crop.id);
 	}
 
 	FileLibrary.prototype.saveCroppedImageToFile = function(){
@@ -898,13 +872,13 @@
 						self.removeImgFromLib(self.activeFile.remove.id);
 					}
 				} else {
-					self.showError(['Error of removing']);
+					alert('Error of removing');
 				}
 				
 				self.activeFile.remove = null;
 			},
 			error: function(){
-				self.showError(['Error of removing']);
+				console.log('Error of removing');
 			}
 		});
 	}
