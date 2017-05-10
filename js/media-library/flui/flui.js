@@ -36,12 +36,18 @@
 		show : function( ) {
 			var $this = $(this);
 			$this.removeClass('closed').addClass('opened');
-			$('body').addClass('modal-open');
+			
+       var modal_h = $this.find('.modal-dialog').outerHeight( true );
+      $('body').css({'min-height': modal_h});
+      $('body').addClass('modal-open');
 		},
 		hide : function( ) {
 			var $this = $(this);
+      $('body').css({'min-height': '100%'});
 			$this.removeClass('opened').addClass('closed');
 			$('body').removeClass('modal-open');
+
+      
 		}
 	}
 
