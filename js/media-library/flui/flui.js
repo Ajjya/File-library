@@ -35,13 +35,18 @@
 		},
 		show : function( ) {
 			var $this = $(this);
-			$this.removeClass('closed').addClass('opened');
-			$('body').addClass('modal-open');
+      $this.removeClass('closed').addClass('opened');
+      $('body').addClass('modal-open');
+
+      // var content_height = $this.find('.modal-content').outerHeight(true);
+      //$this.css({'height': 100%});
 		},
 		hide : function( ) {
 			var $this = $(this);
 			$this.removeClass('opened').addClass('closed');
 			$('body').removeClass('modal-open');
+
+      //$this.css({'height': 0});
 		}
 	}
 

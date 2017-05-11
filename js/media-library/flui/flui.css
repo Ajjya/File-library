@@ -32,6 +32,10 @@
     border-color: #2e6da4;
 }
 
+.modal-open{
+  overflow: hidden;
+}
+
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
@@ -89,6 +93,7 @@ button.close {
 	background-color: rgba(0, 0, 0, 0.8);
   opacity: 1;
   top: 0;
+  height: 100%;
 }
 
 .modal.closed {

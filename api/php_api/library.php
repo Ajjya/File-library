@@ -279,7 +279,7 @@
 		**/
 		private function moveFile($source, $subfolder, $file_mime, $is_copy = false){
 			$today = time();
-			$dir = $this->config['doc_root'] . '/' . $this->config['upload_folder'] . $subfolder . '/';
+			$dir = $this->config['doc_root'] . '/' . $this->config['upload_folder'] . '/' . $subfolder . '/';
 			$dir = $this->createFolder($dir, $today);
 
 			$path_info = pathinfo($source);
@@ -329,13 +329,13 @@
 		    	'type' => 'success',
 		    	'name' => $file_info['res_name'],
 		    	'ext' =>  $file_info['file_ext'],
-		    	'path' => $subfolder . '/' . date('Y', $today) . '/' . date('m', $today) . '/' . date('d', $today) . '/',
+		    	'path' => date('Y', $today) . '/' . date('m', $today) . '/' . date('d', $today) . '/',
 		    	'width' => $width,
 		    	'height' => $height,
 		    	'mime' => $file_mime
 		    );
 
-		    $result['src'] = $this->config['base_url'] . $this->config['upload_folder'] . $result['path'] . $result['name'] . '.' . $result['ext'];
+		    $result['src'] = $this->config['base_url'] . $this->config['upload_folder'] . '/' . $subfolder . '/' . $result['path'] . $result['name'] . '.' . $result['ext'];
 
 		    return $result;
 		}

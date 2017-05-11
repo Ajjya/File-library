@@ -3,7 +3,7 @@
  * ========================================================================
  * Copyright 2017.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * Author: Vladyslava Prykhodko
+ * Author: Vladyslava Prykhodko (vladyslava.prykhodko@gmail.com)
  * ======================================================================== */
 /**
 * 
@@ -607,7 +607,7 @@
 		$('#I' + file_id).remove();
 	}
 
-
+	/*link can consist page GET param*/
 	FileLibrary.prototype.library = function(link){
 		var self = this;
 		if(link == undefined){
