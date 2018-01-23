@@ -1,3 +1,20 @@
+/*
+Usage:
+
+Init:
+$('.modal').flmodal();
+
+Open:
+$('.modal').flmodal('show');
+
+Close:
+$('.modal').flmodal('hide');
+
+Events:
+$( document ).trigger( "modal_closed" );
+$( document ).trigger( "modal_opened" );
+*/
+
 'use strict';
 (function(window, $){
 	var settings = {};
@@ -35,18 +52,15 @@
 		},
 		show : function( ) {
 			var $this = $(this);
-      $this.removeClass('closed').addClass('opened');
-      $('body').addClass('modal-open');
-
-      // var content_height = $this.find('.modal-content').outerHeight(true);
-      //$this.css({'height': 100%});
+                        $this.removeClass('closed').addClass('opened');
+       			$('body').addClass('modal-open');
+			$( document ).trigger( "modal_opened" );
 		},
 		hide : function( ) {
 			var $this = $(this);
 			$this.removeClass('opened').addClass('closed');
 			$('body').removeClass('modal-open');
-
-      //$this.css({'height': 0});
+			$( document ).trigger( "modal_closed" );
 		}
 	}
 
