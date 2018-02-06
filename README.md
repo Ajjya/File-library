@@ -145,6 +145,9 @@ _Url for uploading files_
 	"type": "Success",
 	"text": "Files was uploaded successfull.",
 	"src": "http://test.local/images/Chrysanthemum.jpg",
+	"thumb": "http://fl.local:8081/images/Chrysanthemum-150x200.jpg",
+	"width": 300,
+	"height": 400,
 	"id": 1,
 	"file_type": "image"
 }
@@ -155,6 +158,32 @@ _Url for uploading files_
 	"type": "Error",
 	"text": "Error of uploading"
 }
+```
+---
+**_Multi upload (key='multi_upload')_**
+
+_Url for uploading files_
+##### Params: -
+##### Returns:
+###### Success:
+```js
+[{
+	"type": "Success",
+	"text": "Files was uploaded successfull.",
+	"src": "http://test.local/images/Chrysanthemum.jpg",
+	"thumb": "http://fl.local:8081/images/Chrysanthemum-150x200.jpg",
+	"width": 300,
+	"height": 400,
+	"id": 1,
+	"file_type": "image"
+}]
+```
+###### Error:
+```js
+[{
+	"type": "Error",
+	"text": "Error of uploading"
+}]
 ```
 ---
 **_Crop (key='crop')_**
@@ -394,7 +423,8 @@ var FL = new FileLibrary(
 	{
 		library: 'http://test.local/api/library.json',
 		upload: 'http://test.local/api/upload.json',
-	    	crop: 'http://test.local/api/crop.json',
+		multi_upload: 'http://test.local/api/multi_upload.json',
+	    crop: 'http://test.local/api/crop.json',
 		remove: 'http://test.local/api/remove.json',
 		language: 'http://test.local/js/media-library/ln/'
 	}
@@ -412,6 +442,14 @@ $('.library').each(function(i, item){
 var upload_buttons = [];
 $('.upload').each(function(i, item){
 	upload_buttons.push({
+		'el': $(this),
+		'aspectRatio': 21 / 9
+	});
+});
+
+var multi_upload_buttons = [];
+$('.multi_upload').each(function(i, item){
+	multi_upload_buttons.push({
 		'el': $(this),
 		'aspectRatio': 21 / 9
 	});
@@ -435,6 +473,7 @@ FL.init(
 	{
 		library_buttons: library_buttons,
 		upload_buttons: upload_buttons,
+		multi_upload_buttons: multi_upload_buttons,
 		crop_buttons: crop_buttons,
 		remove_buttons: remove_buttons
 	}
