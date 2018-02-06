@@ -19,7 +19,8 @@
 *		library: 'http://site.ru/library',
 *		upload: 'http://site.ru/upload',
 *       crop: 'http://site.ru/crop',
-*       remove: 'http://site.ru/remove'
+*       remove: 'http://site.ru/remove',
+*       multi_upload: multi_upload_link
 *	}
 *);
 *
@@ -28,6 +29,7 @@
 *	{
 *		library_buttons: [$('#but1'), $('#but2')],
 *		upload_buttons: [$('#but1'), $('#but2')],
+*		multi_upload_buttons: [{el:$('#multi_upload_button')}],
 *		crop_buttons: [$('#but1'), $('#but2')],
 *		remove_buttons: [$('#but1'), $('#but2')]
 *	}
@@ -59,7 +61,8 @@
 
 		this.buttonIndex = {
 			upload: 0,
-			library: 0
+			library: 0,
+			multi_upload: 0
 		};
 
 		this.activeFile = {
@@ -73,7 +76,8 @@
 			upload: '#',
 			crop: '#',
 			library: '#',
-			remove: '#'
+			remove: '#',
+			multi_upload: '#'
 		};
 
 		this.settings = {
@@ -197,7 +201,7 @@
 					$(this).after('<form enctype="multipart/form-data" style="display:none;"><input type="file" action="' + self.links.upload + '" method="POST" id="add_file_form" name="add_img_form" accept="' + self.filetypes_string + '"/></form>');
 					$('#add_file_form').trigger('click');
 					$('#add_file_form').on('change', function(event){
-						self.uploadFile(event, self);
+						self.uploadFile(event, {is_show_crop:true});
 					});
 				});
 			} else {
@@ -474,9 +478,28 @@
 						return false;
 					});
 					$('#upl_' + self.buttonIndex.upload).on('change', function(event){
-						self.uploadFile(event, {aspectRatio: item.aspectRatio});
+						self.uploadFile(event, {aspectRatio: item.aspectRatio, is_show_crop:true});
 					});
 					self.buttonIndex.upload++;
+				});
+			}
+
+			if(buttons.multi_upload_buttons){
+				/*each upload button - upload form*/
+				buttons.multi_upload_buttons.forEach(function(item){
+					item.el.after('<form enctype="multipart/form-data" style="display:none;">\
+						<input type="file" min="1" max="9999"  action="' + self.links.multi_upload + '" multiple="true"  method="POST" id="multi_upl_' + self.buttonIndex.multi_upload + '" name="multi_upl_' + self.buttonIndex.multi_upload + '[]" />\
+					</form>');
+					item.el.attr('data-uploader-id', self.buttonIndex.multi_upload);
+					item.el.on('click', function(){
+						var uploader_id = $(this).attr('data-uploader-id');
+						$('#multi_upl_' + uploader_id).trigger('click');
+						return false;
+					});
+					$('#multi_upl_' + self.buttonIndex.multi_upload).on('change', function(event){
+						self.multiplyUploadFile(event, {is_show_crop:false});
+					});
+					self.buttonIndex.multi_upload++;
 				});
 			}
 
@@ -658,6 +681,20 @@
 	}
 
 	/*upload*/
+	FileLibrary.prototype.multiplyUploadFile = function(event, options){
+		var self = this;
+		
+		var form = event.target.parentNode;
+		var el = event.target;
+		var validation_res = self.validateFile(el);
+		if(validation_res.length > 0){
+			self.showError(validation_res);
+		} else {
+			self.__sendForm(form, self.links.multi_upload, options);
+		}
+	}
+
+
 	FileLibrary.prototype.uploadFile = function(event, options){
 		var self = this;
 		
@@ -673,31 +710,36 @@
 
 	FileLibrary.prototype.validateFile = function(el){
 		var errors = [];
-		var size = el.files[0].size;
-		var type = el.files[0].type;
+		for(var j in el.files){
+			if(typeof j !== 'number') continue;
 
-		if(size > this.settings.maxUploadSize){
-			errors.push(this.translation.error_file_size);
-		}
+			var size = el.files[j].size;
+			var type = el.files[j].type;
 
-		var flag_filetype = false;
-		for(var i in this.filetypes){
-			if(this.filetypes[i] == 'image/*'){
-				if(type.indexOf('image') !== -1){
+			if(size > this.settings.maxUploadSize){
+				errors.push(this.translation.error_file_size);
+			}
+
+			var flag_filetype = false;
+			for(var i in this.filetypes){
+				if(this.filetypes[i] == 'image/*'){
+					if(type.indexOf('image') !== -1){
+						flag_filetype = true;
+						break;
+					}
+				}
+
+				if(type.indexOf(this.filetypes[i]) !== -1){
 					flag_filetype = true;
 					break;
 				}
 			}
 
-			if(type.indexOf(this.filetypes[i]) !== -1){
-				flag_filetype = true;
-				break;
+			if(!flag_filetype){
+				errors.push(this.translation.error_file_type);
 			}
 		}
 
-		if(!flag_filetype){
-			errors.push(this.translation.error_file_type);
-		}
 
 		return errors;
 		
@@ -734,36 +776,96 @@
 
 	}
 
+	FileLibrary.prototype.__showUploadingMessage = function(type, message){
+		if(type == 'error'){
+			document.getElementById("status").innerHTML = message;
+			document.getElementById("OK").style.display = "inline-block";
+		} else if(type == "success"){
+			document.getElementById("status").innerHTML = message;
+			document.getElementById("OK").style.display = 'none';
+			$('#loading').hide();
+		}
+	}
+
 	FileLibrary.prototype.__completeHandler = function(event, self, options){
 		var response = JSON.parse(event.target.responseText);
-		if(response.type == undefined){
-			document.getElementById("status").innerHTML = self.translation.error_of_uploading;
-			document.getElementById("OK").style.display = "inline-block";
-		} else if(response.type == "Error"){
-			document.getElementById("status").innerHTML = response.text;
-			document.getElementById("OK").style.display = "inline-block";
-		} else {
-			document.getElementById("progressBar").value = 0;
-			document.getElementById("progressBar").style.display = "none";
+		if(Array.isArray(response) && response.length > 0){
 
-			self.activeFile.upload = {
-				'id' : response.id,
-				'src' : response.src
+			var activeFiles = [];
+
+			for(var i in response){
+				if(response[i].type == undefined ){
+					self.__showUploadingMessage('error', self.translation.error_of_uploading);
+					return;
+				} else if(response[i].type == "Error"){
+					self.__showUploadingMessage('error', response[i].text);
+					return;
+				} else {
+					document.getElementById("progressBar").value = 0;
+					document.getElementById("progressBar").style.display = "none";
+
+					activeFiles.push({
+						'id' : response[i].id,
+						'src' : response[i].src
+					});
+				}
 			}
 
-			$( document ).trigger( "fileUploaded", [ self.activeFile.upload ] );
+			$( document ).trigger( "fileUploaded", [ JSON.stringify(activeFiles) ] );
 
-			if(self.actions.indexOf('crop') !== -1 && response.file_type.indexOf('image') !== -1){
-				self.activeFile.crop = self.activeFile.upload;
-				self.cropImage(options);
+			if(self.actions.indexOf('crop') !== -1 && response[0].file_type.indexOf('image') !== -1){
+				if(options.is_show_crop){
+					self.activeFile.crop = activeFiles[0];
+					self.cropImage(options);
+				} else{
+					self.__showUploadingMessage('success', '');
+				}
 			} else {
-				document.getElementById("status").innerHTML = '';
-				document.getElementById("OK").style.display = 'none';
-				$('#loading').hide();
+				self.__showUploadingMessage('success', '');
 			}
 
 			self.activeFile.upload = null;
+			
+
+		} else {
+			self.__showUploadingMessage('error', self.translation.error_of_uploading);
 		}
+
+
+		// if(response.type == undefined){
+		// 	document.getElementById("status").innerHTML = self.translation.error_of_uploading;
+		// 	document.getElementById("OK").style.display = "inline-block";
+		// } else if(response.type == "Error"){
+		// 	document.getElementById("status").innerHTML = response.text;
+		// 	document.getElementById("OK").style.display = "inline-block";
+		// } else {
+		// 	document.getElementById("progressBar").value = 0;
+		// 	document.getElementById("progressBar").style.display = "none";
+
+			// self.activeFile.upload = {
+			// 	'id' : response.id,
+			// 	'src' : response.src
+			// }
+
+			// $( document ).trigger( "fileUploaded", [ self.activeFile.upload ] );
+
+			// if(self.actions.indexOf('crop') !== -1 && response.file_type.indexOf('image') !== -1){
+			// 	if(options.is_show_crop){
+			// 		self.activeFile.crop = self.activeFile.upload;
+			// 		self.cropImage(options);
+			// 	} else{
+			// 		document.getElementById("status").innerHTML = '';
+			// 		document.getElementById("OK").style.display = 'none';
+			// 		$('#loading').hide();
+			// 	}
+			// } else {
+			// 	document.getElementById("status").innerHTML = '';
+			// 	document.getElementById("OK").style.display = 'none';
+			// 	$('#loading').hide();
+			// }
+
+			// self.activeFile.upload = null;
+		//}
 	}
 
 	FileLibrary.prototype.__errorHandler = function(event){
@@ -821,7 +923,6 @@
 
 
 	FileLibrary.prototype.__completeCropHandler = function(event, self){
-		debugger;
 		var response = JSON.parse(event.target.responseText);
 
 		if(response.type == 'Success'){

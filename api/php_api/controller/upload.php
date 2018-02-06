@@ -4,10 +4,7 @@
 	
 	$Uploads = new Uploads($config);
 
-	$file_info = array();
-	foreach($_FILES as $one_file){
-		$file_info = $one_file;
-	}
+	$file_info = $_FILES;
 
 	$subfolder = 'media_library';
 	$file_info = $Uploads->uploadFile($file_info, $subfolder);
