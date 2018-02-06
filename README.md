@@ -1,5 +1,5 @@
 # File-library (Test version)
-> A simple javascript library for uploading, cropping, deleting files.
+> A simple javascript library for uploading, cropping, deleting files. Multiuploads.
 ## Table of contents
 * [Use](#use)
 * [Requirements](#requirements)
@@ -73,6 +73,7 @@ var FL = new FileLibrary(
 	{
 		library: '/api/library.json',
 		upload: '/api/upload.json',
+		multi_upload: '/api/multi_upload_link.json',
 		crop: '/api/crop.json',
 		remove: '/api/remove.json',
 		language: '/js/media-library/ln/'
@@ -231,7 +232,6 @@ $('.library').each(function(i, item){
 });
 ```
 _Where:_
-
 _el - jQuery DOM element (required)_
 ##### Upload buttons:
 ```js
@@ -244,9 +244,20 @@ $('.upload').each(function(i, item){
 });
 ```
 _Where:_
-
 _el - jQuery DOM element (required)_
-
+_aspectRatio - aspect Ratio (optional)_
+##### Multiupload buttons:
+```js
+var multi_upload_buttons = [];
+$('.multi_upload').each(function(i, item){
+	multi_upload_buttons.push({
+		'el': $(this),
+		'aspectRatio': 21 / 9
+	});
+});
+```
+_Where:_
+_el - jQuery DOM element (required)_
 _aspectRatio - aspect Ratio (optional)_
 ##### Crop buttons:
 ```js
@@ -296,7 +307,30 @@ var options = {
 FL.dataFileOptionInit(options);
 ```
 To set aspectRatio for cropping images use this function.
-Other parametrs uses to pass them to your app when any [event](#events) is occured.
+Other parametrs are used to pass them to your app when any [event](#events) is occured.
+Example:
+```js
+	var FL = new FileLibrary()...
+
+	$('#library').on('click', function(){
+		FL.dataFileOptionInit({type: 'bg_img'});
+	});
+
+	$('#thumb_library').on('click', function(){
+		FL.dataFileOptionInit({type: 'thumb'});
+	});
+
+
+	$( document ).on( "libraryActiveFileChanged", function(event, activeImage, options){
+		if(options.type == 'bg_img'){
+			...
+		}
+		else {
+			...
+		}
+	});
+```
+
 ## Events
 ### libraryActiveFileChanged
 This event fires when file in library is choosen

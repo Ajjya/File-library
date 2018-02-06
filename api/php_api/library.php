@@ -228,6 +228,18 @@
 		}
 
 
+		public function multiUploadFiles($files_info, $subfolder){
+			$files_info = $this->prepare_files($files_info);
+			$response = [];
+
+    		foreach ($files as $key => $one_file_info) {
+    			$this->uploadFile($one_file_info, $subfolder);
+    		}
+
+    		return $response;
+		}
+
+
 		/**
 		* isFileExist function 
 		* function checks is file exist and generate new filename
@@ -430,6 +442,65 @@
 			}
 
 			return false;
+		}
+
+
+		/**
+		* prepare multi $_FILES
+		*
+		* @param 
+		* $files_input - $_FILES data
+		* @return modifyed $files_input bool 
+		* 
+		**/
+		private function prepare_files($files_input){
+			$files_res = [];
+
+			foreach ($files_input as $key => $one_file) {
+				if(strpos($key, 'upl_') == 0 || strpos($key, 'multi_upl_') == 0){
+					if(is_array($one_file['name'])){
+						foreach($one_file['name'] as $k => $one_name){
+							$files_res[$k]['name'] = $one_name;
+						}
+					} else {
+						$files_res[0]['name'] = $one_file['name'];
+					}
+
+					if(is_array($one_file['type'])){
+						foreach($one_file['type'] as $k => $one_name){
+							$files_res[$k]['type'] = $one_name;
+						}
+					} else {
+						$files_res[0]['type'] = $one_file['type'];
+					}
+
+					if(is_array($one_file['tmp_name'])){
+						foreach($one_file['tmp_name'] as $k => $one_name){
+							$files_res[$k]['tmp_name'] = $one_name;
+						}
+					} else {
+						$files_res[0]['tmp_name'] = $one_file['tmp_name'];
+					}
+
+					if(is_array($one_file['error'])){
+						foreach($one_file['error'] as $k => $one_name){
+							$files_res[$k]['error'] = $one_name;
+						}
+					} else {
+						$files_res[0]['error'] = $one_file['error'];
+					}
+
+					if(is_array($one_file['size'])){
+						foreach($one_file['size'] as $k => $one_name){
+							$files_res[$k]['size'] = $one_name;
+						}
+					} else {
+						$files_res[0]['size'] = $one_file['size'];
+					}
+				}
+			}
+
+			return $files_res;
 		}
 
 	}
