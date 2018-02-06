@@ -1,0 +1,10 @@
+[{
+	"type": "Success",
+	"text": "Files was uploaded successfull.",
+	"src": "http://fl.local:8081/images/Chrysanthemum.jpg",
+	"thumb": "http://fl.local:8081/images/Chrysanthemum-150x200.jpg",
+	"width": 300,
+	"height": 400,
+	"id": 1,
+	"file_type": "image"
+}]
