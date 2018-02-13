@@ -180,7 +180,7 @@
 			$thumb = imagecreatetruecolor($wh, $hw);
 			$handle_sfile = imagecreatefromstring($sfile);
 
-			$res_image_resized = imagecopyresized ( $thumb , $handle_sfile , $x_axis , $y_axis , 0 , 0 , $wh , $hw , $dimensions[0] , $dimensions[1] );
+			$res_image_resized = imagecopyresampled ( $thumb , $handle_sfile , $x_axis , $y_axis , 0 , 0 , $wh , $hw , $dimensions[0] , $dimensions[1] );
 			imagejpeg ( $thumb, $dfile );
 
 			return $res_image_resized;
