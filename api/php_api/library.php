@@ -178,10 +178,35 @@
 
 
 			$thumb = imagecreatetruecolor($wh, $hw);
-			$handle_sfile = imagecreatefromstring($sfile);
 
+			if($path_parts['extension'] == 'png'){
+				// Disable alpha mixing and set alpha flag if is a png file
+				imagealphablending($thumb, false);
+				imagesavealpha($thumb, true);
+			}
+
+			$handle_sfile = imagecreatefromstring(file_get_contents($sfile));
 			$res_image_resized = imagecopyresampled ( $thumb , $handle_sfile , $x_axis , $y_axis , 0 , 0 , $wh , $hw , $dimensions[0] , $dimensions[1] );
-			imagejpeg ( $thumb, $dfile );
+
+			switch($path_parts['extension']){
+				case 'jpg':
+					imagejpeg ( $thumb, $dfile );
+					break;
+				case 'jpeg':
+					imagejpeg ( $thumb, $dfile );
+					break;
+				case 'png':
+					imagepng ( $thumb, $dfile );
+					break;
+				case 'gif':
+					imagegif ( $thumb, $dfile );
+					break;
+				case 'bmp':
+					imagebmp ( $thumb, $dfile );
+					break;
+				default:
+					imagejpeg ( $thumb, $dfile );
+			}
 
 			return $res_image_resized;
 		}
