@@ -31,7 +31,7 @@ dist/
 ```
 ## Getting started
 ### Quick start
-Four quick start options are available:
+For quick start options are available:
 * [Download the latest release](https://github.com/Ajjya/File-library/archive/master.zip)
 * Clone the repository: git clone [Download the latest release](https://github.com/Ajjya/File-library.git)
 * Install: bower install File-library
